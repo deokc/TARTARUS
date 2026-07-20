@@ -347,7 +347,7 @@
       border: 1px solid #090b0b;
       box-shadow: 0 10px 34px rgba(0,0,0,.3);
     }
-    .nav-tabs { display: grid; grid-template-columns: repeat(2, 1fr); }
+    .nav-tabs { display: grid; grid-template-columns: repeat(3, 1fr); }
     .nav-tab {
       position: relative;
       padding: 17px 18px;
@@ -597,6 +597,56 @@
       letter-spacing: .08em;
     }
 
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+      margin-top: 16px;
+    }
+    .gallery-item {
+      min-width: 0;
+      padding: 9px;
+      border: 1px solid #0c0e0d;
+      background: var(--paper-2);
+      box-shadow: 0 20px 52px rgba(0,0,0,.38);
+      cursor: zoom-in;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 28px 62px rgba(0,0,0,.48);
+    }
+    .gallery-item img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border: 1px solid var(--ink);
+      background: #6c7470;
+    }
+    .gallery-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2500;
+      display: none;
+      place-items: center;
+      padding: clamp(10px, 3vw, 36px);
+      background: rgba(3,4,4,.94);
+      backdrop-filter: blur(8px);
+      cursor: zoom-out;
+    }
+    .gallery-lightbox.open { display: grid; animation: modalFade .2s ease both; }
+    .gallery-lightbox img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: calc(100dvh - 20px);
+      object-fit: contain;
+      box-shadow: 0 32px 90px rgba(0,0,0,.75);
+    }
+
     /* MODAL */
     .modal {
       position: fixed;
@@ -755,6 +805,7 @@
       .hero-side { min-height: 280px; }
       .file { grid-column: span 12; }
       .profile-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .gallery-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
       .dossier {
         display: block;
         width: min(760px, 100%);
@@ -784,6 +835,7 @@
       .grade { border-right: 0; border-bottom: 1px solid var(--ink); }
       .grade:last-child { border-bottom: 0; }
       .profile-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
       .card-photo { height: 440px; }
       .identity { grid-template-columns: repeat(2,1fr); }
       .identity div:nth-child(2) { border-right: 0; }
@@ -915,6 +967,7 @@
       <div class="nav-tabs">
         <button class="nav-tab active" type="button" data-tab="world">세계관</button>
         <button class="nav-tab" type="button" data-tab="characters">등장인물</button>
+        <button class="nav-tab" type="button" data-tab="gallery">갤러리</button>
       </div>
     </nav>
 
@@ -1035,6 +1088,35 @@
 
         <div class="profile-grid" id="profileGrid"></div>
       </section>
+
+      <section class="panel" id="gallery">
+        <div class="section-bar">
+          <h2>VISUAL ARCHIVE</h2>
+          <span>기록 이미지 열람</span>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- 아래 6개의 src에 각각 사용할 이미지 링크를 따로 넣으면 됩니다. -->
+          <button class="gallery-item" type="button" aria-label="갤러리 이미지 1 크게 보기">
+            <img src="https://raw.githubusercontent.com/deokc/TARTARUS/refs/heads/main/%EC%9C%A4%EC%8B%9C%EC%98%A8_%EC%B7%A8%EC%B9%A8.jpg" alt="갤러리 이미지 1">
+          </button>
+          <button class="gallery-item" type="button" aria-label="갤러리 이미지 2 크게 보기">
+            <img src="https://raw.githubusercontent.com/deokc/TARTARUS/refs/heads/main/%EC%9C%A4%EC%8B%9C%EC%98%A8_%EB%B6%80%EC%83%81.jpg" alt="갤러리 이미지 2">
+          </button>
+          <button class="gallery-item" type="button" aria-label="갤러리 이미지 3 크게 보기">
+            <img src="https://raw.githubusercontent.com/deokc/TARTARUS/refs/heads/main/%EA%B0%95%EB%8F%84%ED%98%81_%EB%B6%80%EC%83%81.jpg" alt="갤러리 이미지 3">
+          </button>
+          <button class="gallery-item" type="button" aria-label="갤러리 이미지 4 크게 보기">
+            <img src="https://raw.githubusercontent.com/deokc/TARTARUS/refs/heads/main/%EA%B0%95%EB%8F%84%ED%98%81_%ED%9C%B4%EC%8B%9D.jpg" alt="갤러리 이미지 4">
+          </button>
+          <button class="gallery-item" type="button" aria-label="갤러리 이미지 5 크게 보기">
+            <img src="https://raw.githubusercontent.com/deokc/TARTARUS/refs/heads/main/%EC%A0%9C%EB%A1%9C_%EC%83%A4%EC%9B%8C%EC%A4%91.jpg" alt="갤러리 이미지 5">
+          </button>
+          <button class="gallery-item" type="button" aria-label="갤러리 이미지 6 크게 보기">
+            <img src="https://raw.githubusercontent.com/deokc/TARTARUS/refs/heads/main/%EC%A0%9C%EB%A1%9C_%EB%B6%80%EC%83%81.jpg" alt="갤러리 이미지 6">
+          </button>
+        </div>
+      </section>
     </main>
 
     <footer>TARTARUS CENTRAL ARCHIVE · ALL ACCESS RECORDS ARE STORED BY LEVIATHAN</footer>
@@ -1053,6 +1135,10 @@
     </article>
   </div>
 
+  <div class="gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="갤러리 이미지 크게 보기">
+    <img id="galleryLightboxImage" src="" alt="">
+  </div>
+
 
   <audio id="bgm" loop preload="auto" src="https://raw.githubusercontent.com/deokc/TARTARUS/refs/heads/main/%ED%83%80%EB%A5%B4%ED%83%80%EB%A1%9C%EC%8A%A4_01.mp3"></audio>
   <aside class="music-dock" id="musicDock" aria-label="배경 음악 제어판">
@@ -1061,7 +1147,7 @@
     </button>
     <div class="music-panel">
       <div class="music-head">
-        <span class="music-title">FACILITY AMBIENCE</span>
+        <span class="music-title">TARTARUS</span>
         <span class="music-status" id="musicStatus">STANDBY</span>
       </div>
       <div class="music-volume-row">
@@ -1333,6 +1419,30 @@
         ${terminalStates[terminalIndex].map((line, index) => `<span class="${index === 4 ? 'danger' : ''}">&gt; ${line}</span>`).join('<br>')}
       `;
     }, 4300);
+
+    const galleryLightbox = document.getElementById('galleryLightbox');
+    const galleryLightboxImage = document.getElementById('galleryLightboxImage');
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const image = item.querySelector('img');
+        galleryLightboxImage.src = image.currentSrc || image.src;
+        galleryLightboxImage.alt = image.alt;
+        galleryLightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeGalleryLightbox() {
+      galleryLightbox.classList.remove('open');
+      galleryLightboxImage.src = '';
+      document.body.style.overflow = '';
+    }
+
+    galleryLightbox.addEventListener('click', closeGalleryLightbox);
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && galleryLightbox.classList.contains('open')) closeGalleryLightbox();
+    });
 
     renderCharacters();
   </script>
